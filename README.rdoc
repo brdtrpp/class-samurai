@@ -1,10 +1,8 @@
-== README
-
 = Class Samurai
 
 This is my first major project with Rails. It is a class management system for small businesses that deal with classes, courses, lessons and the like.
 
-= To-Do
+== To-Do
 
 * Install bootstrap theme and modify to fit project theme.
 * Install devise and intial config.
