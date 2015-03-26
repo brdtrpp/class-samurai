@@ -9,12 +9,13 @@ This project is a two fold experiment. I want to create something that people wi
 Class Samurai is aim to make running a gym, cheer facility, dojo, or any other class based business easier and simpler. I have used the competition before and it leaves a lot to be desired.
 
 === Offering:
-  * Easy class scheduling
-  * Simple Attendance records and tracking
-  * Time tracking
-  * Payment gateway
-  * Forms for business uses
-  * Simple communication
+
+* Easy class scheduling
+* Simple Attendance records and tracking
+* Time tracking
+* Payment gateway
+* Forms for business uses
+* Simple communication
 
 == To-Do
 
