@@ -2,9 +2,24 @@
 
 This is my first major project with Rails. It is a class management system for small businesses that deal with classes, courses, lessons and the like.
 
+== Goals
+
+This project is a two fold experiment. I want to create something that people will use and I can make a little money at.
+
+Class Samurai is aim to make running a gym, cheer facility, dojo, or any other class based business easier and simpler. I have used the competition before and it leaves a lot to be desired.
+
+=== Offering:
+  * Easy class scheduling
+  * Simple Attendance records and tracking
+  * Time tracking
+  * Payment gateway
+  * Forms for business uses
+  * Simple communication
+
 == To-Do
 
-* Install bootstrap theme and modify to fit project theme.
+* Setup Guard & Minitest
+* Change theme colors and add logo with link
 * Install devise and intial config.
 * Config rolify and authorize.
 * Install calendar gem.
