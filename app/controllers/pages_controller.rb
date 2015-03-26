@@ -1,7 +1,29 @@
 class PagesController < ApplicationController
-  def blank_page
+  def landing
   end
-
-  def blank_page2
+  
+  def account
   end
+  
+  def attendance
+  end
+  
+  def contact
+  end
+  
+  def forms
+  end
+  
+  def help
+  end
+  
+  def locations
+  end
+  
+  def schedule
+  end
+  
+  def payment
+  end
+  
 end
