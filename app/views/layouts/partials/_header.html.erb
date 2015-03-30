@@ -1,30 +1,42 @@
 <!--logo start-->
- <div class="brand">
-    <a href="#/" class="logo">
-    <span>Class</span>SAMURAI</a>
+<div class="brand">
+    <%= link_to root_path, class: "logo" do %>
+        <span>Class</span>SAMURAI
+    <% end %>
 </div>
 <!--logo end-->
-<ul class="nav navbar-nav navbar-left">
-                <li class="toggle-navigation toggle-left">
-                    <button class="sidebar-toggle" id="toggle-left">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </li>
-                <li class="toggle-profile hidden-xs">
-                    <button type="button" class="btn btn-default" id="toggle-profile">
-                        <i class="icon-user"></i>
-                    </button>
-                </li>
-                <li class="hidden-xs">
-                    <input type="text" class="search" placeholder="Search Samurai...">
-                    <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
-                    </button>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="toggle-navigation toggle-right">
-                    <button class="sidebar-toggle" id="toggle-right">
-                        <i class="fa fa-indent"></i>
-                    </button>
-                </li>
-            </ul>
+<% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-left">
+        <li class="toggle-navigation toggle-left">
+            <button class="sidebar-toggle" id="toggle-left">
+                <i class="fa fa-bars"></i>
+            </button>
+        </li>
+        <li class="toggle-profile hidden-xs">
+            <button type="button" class="btn btn-default" id="toggle-profile">
+                <i class="icon-user"></i>
+            </button>
+        </li>
+        <li class="hidden-xs">
+            <input type="text" class="search" placeholder="Search Samurai...">
+            <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
+            </button>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="toggle-navigation toggle-right">
+            <button class="sidebar-toggle" id="toggle-right">
+                <i class="fa fa-indent"></i>
+            </button>
+        </li>
+    </ul>
+    
+    <%= link_to "Sign-Out", destroy_user_session_path, :method => :get, class: "btn navbar-btn navbar-right" %>            
+    
+<% else %>
+
+    <%= link_to "Login", new_user_session_path, class: "btn navbar-btn navbar-right"  %>
+    
+    <%= link_to "Sign-Up", new_user_registration_path, class: "btn navbar-btn navbar-right hidden-xs"  %>
+    
+<% end %>

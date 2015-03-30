@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   get 'schedule'      =>      'pages#schedule'
   get 'payment'        =>     'pages#payment'
   get 'attendance'    =>      'pages#attendance'
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   get 'dashboard/index'
 
   # defaults to dashboard
-  root :to => redirect('/dashboard')
+  root 'pages#landing'
   
   # view routes
   get '/dashboard' => 'dashboard#index'
