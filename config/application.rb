@@ -22,7 +22,7 @@ module RailsSeedVersion
     # precompile vendor assets
     config.assets.precompile += %w( base.js )
     config.assets.precompile += %w( base.css )
-
+    config.assets.initialize_on_precompile = false
     
   end
 end
