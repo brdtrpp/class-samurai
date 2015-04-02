@@ -20,8 +20,6 @@ Class Samurai is aim to make running a gym, cheer facility, dojo, or any other c
 == To-Do
 
 * Setup Guard & Minitest
-* Change theme colors and add logo with link
-* Install devise and intial config.
 * Config rolify and authorize.
 * Install calendar gem.
 * Figure out role details assigning instructors, staff, student, parent, admin rights.
