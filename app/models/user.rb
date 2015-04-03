@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Authority::UserAbilities
+  include Authority::Abilities
   has_many :events, foreign_key: :admin_id
   rolify
   # Include default devise modules. Others available are:

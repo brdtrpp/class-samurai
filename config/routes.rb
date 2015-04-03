@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'pages#landing'
+
   resources :events
 
   devise_for :users
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
   get 'dashboard/index'
 
   # defaults to dashboard
-  root 'pages#landing'
+
   
   # view routes
   get '/dashboard' => 'dashboard#index'
