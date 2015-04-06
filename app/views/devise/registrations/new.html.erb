@@ -17,10 +17,31 @@
               <% end %><br />
               <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
               <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password Again" %>
+              
+              <h3><center>User Roles</center></h3>
+              <%= f.label(:admin) do %>
+                Administrator:
+                <%= hidden_field_tag(:admin, 0) %>
+                <%= check_box_tag(:admin, 1, @user.has_role?(:admin)) %>
+              <% end %>
+              <%= f.label(:staff) do %>
+                Staff:
+                <%= hidden_field_tag(:staff, 0) %>
+                <%= check_box_tag(:staff, 1, @user.has_role?(:staff)) %>
+              <% end %>
+              <%= f.label(:instructor) do %>
+                Instructor:
+                <%= hidden_field_tag(:instructor, 0) %>
+                <%= check_box_tag(:instructor, 1, @user.has_role?(:instructor)) %>
+              <% end %>
+              <%= f.label(:guardian) do %>
+                Guardian:
+                <%= hidden_field_tag(:guardian, 0) %>
+                <%= check_box_tag(:guardian, 1, @user.has_role?(:guardian)) %>
+              <% end %>
             </div>
-          
-
-              <%= f.submit "Sign up", class: "form-control btn btn-primary" %>
+                    
+            <%= f.submit "Sign up", class: "form-control btn btn-primary" %>
 
           <% end %>
           
