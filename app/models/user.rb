@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include Authority::UserAbilities
-  has_many :events, foreign_key: :admin_id
+  has_and_belongs_to_many :facilities
+  has_many :events
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

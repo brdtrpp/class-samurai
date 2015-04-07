@@ -1,3 +1,5 @@
 class Facility < ActiveRecord::Base
-  belongs_to :user
+  resourcify
+  validates :user_id, presence: true
+  has_and_belongs_to_many :users
 end

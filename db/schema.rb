@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402185908) do
-
-  create_table "admins", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "resource_id"
-    t.string   "resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admins", ["name", "resource_type", "resource_id"], name: "index_admins_on_name_and_resource_type_and_resource_id"
-  add_index "admins", ["name"], name: "index_admins_on_name"
+ActiveRecord::Schema.define(version: 20150406184820) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -34,15 +23,13 @@ ActiveRecord::Schema.define(version: 20150402185908) do
   end
 
   create_table "facilities", force: :cascade do |t|
-    t.text     "address"
-    t.text     "type"
-    t.integer  "user_id"
+    t.string   "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at"
-  add_index "facilities", ["user_id"], name: "index_facilities_on_user_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

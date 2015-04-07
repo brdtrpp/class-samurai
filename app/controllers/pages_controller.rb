@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   def help
   end
   
-  def locations
+  def acilities
   end
   
   def schedule

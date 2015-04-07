@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  address: MyText
-  type: MyText
-  user_id: 
+  address: MyString
 
 two:
-  address: MyText
-  type: MyText
-  user_id: 
+  address: MyString

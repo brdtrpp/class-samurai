@@ -19,8 +19,11 @@ Class Samurai is aim to make running a gym, cheer facility, dojo, or any other c
 
 == To-Do
 
-* Setup Guard & Minitest
-* Config rolify and authorize.
-* Install calendar gem.
-* Figure out role details assigning instructors, staff, student, parent, admin rights.
-* Figure out event details such as signing instructor, student to event.
+* Assign User admin role when creating Facility
+* Give admin role rights to invite staff and instrutor roles
+* Assign guardian role to have many students
+* Assign Students to have many guardians
+* Events belong to Facility
+* Facility belongs to Admin
+* Staff and Instructors belong to Facility
+

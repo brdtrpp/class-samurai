@@ -1,0 +1,18 @@
+<%= form_for(@facility) do |f| %>
+  <% if @facility.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@facility.errors.count, "error") %> prohibited this facility from being saved:</h2>
+
+      <ul>
+      <% @facility.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :address, autocomplete: "off", class: "form-control", placeholder: "Address"%>
+  </div>
+  <%= f.submit "Create", class: "form-control btn btn-primary" %>
+<% end %>

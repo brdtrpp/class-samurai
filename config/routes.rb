@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :facilities
+
   root 'pages#landing'
 
   resources :events
