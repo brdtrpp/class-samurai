@@ -4,7 +4,7 @@ class FacilitiesController < ApplicationController
   # GET /facilities
   # GET /facilities.json
   def index
-    @facilities = Facility.all
+    @facilities = Facility.with_role(:admin, current_user)
   end
 
   # GET /facilities/1
