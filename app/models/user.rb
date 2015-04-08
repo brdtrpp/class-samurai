@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Authority::UserAbilities
   has_and_belongs_to_many :facilities
-  has_many :events
+  has_and_belongs_to_many :events, through: :facilities 
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   after_create :assign_default_role
 
   def assign_default_role
-    add_role(:admin)
+    add_role(:unaffiliated)
   end
 end
 

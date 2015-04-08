@@ -80,8 +80,8 @@
                         <% end %>
                     </li>
                     
-                    <li class="<%= 'active' if controller?('pages') && action?('account') %>">
-                        <%= link_to account_path do %>
+                    <li class="<%= 'active' if controller?('devise/registration') && action?('edit') %>">
+                        <%= link_to edit_user_registration_path do %>
                             <i class="fa  fa-fw fa-user"></i> Account
                         <% end %>
                     </li>

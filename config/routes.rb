@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   resources :facilities
 
   root 'pages#landing'
+  get 'home' => 'dashboard#index', as: :user_root 
 
   resources :events
 
   devise_for :users
   get 'schedule'      =>      'pages#schedule'
-  get 'payment'        =>     'pages#payment'
+  get 'payment'       =>      'pages#payment'
   get 'attendance'    =>      'pages#attendance'
   get 'help'          =>      'pages#help'
   get 'locations'     =>      'pages#locations'

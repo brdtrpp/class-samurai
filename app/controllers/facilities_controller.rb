@@ -4,7 +4,9 @@ class FacilitiesController < ApplicationController
   # GET /facilities
   # GET /facilities.json
   def index
-    @facilities = Facility.with_role(:admin, current_user)
+    @current_user = current_user
+    @facilities = Facility.with_role(:admin, @current_user)
+    # @facilities = Facility.all
   end
 
   # GET /facilities/1
@@ -24,14 +26,15 @@ class FacilitiesController < ApplicationController
   # POST /facilities
   # POST /facilities.json
   def create
+    @current_user = current_user
     @facility = Facility.new(facility_params)
     @facility.user_id = current_user.id
-    current_user.add_role :admin, Facility.find_by(user_id: current_user)
-
+    
     respond_to do |format|
       if @facility.save
         format.html { redirect_to @facility, notice: 'Facility was successfully created.' }
         format.json { render :show, status: :created, location: @facility }
+        @current_user.add_role :admin, Facility.where(user_id: @current_user.id).last
       else
         format.html { render :new }
         format.json { render json: @facility.errors, status: :unprocessable_entity }
