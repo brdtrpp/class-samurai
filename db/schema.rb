@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406184820) do
+ActiveRecord::Schema.define(version: 20150409164336) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -24,12 +24,30 @@ ActiveRecord::Schema.define(version: 20150406184820) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "user_id"
+    t.string   "name",        limit: 45
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.decimal  "zip_code",               precision: 5
+    t.string   "phone"
+    t.text     "description"
   end
 
+  add_index "facilities", ["city"], name: "index_facilities_on_city"
+  add_index "facilities", ["name"], name: "index_facilities_on_name"
+  add_index "facilities", ["state"], name: "index_facilities_on_state"
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at"
+  add_index "facilities", ["zip_code"], name: "index_facilities_on_zip_code"
+
+  create_table "facilities_users", id: false, force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "facility_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

@@ -1,11 +1,11 @@
 class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
 
   # GET /facilities
   # GET /facilities.json
   def index
-    @current_user = current_user
-    @facilities = Facility.with_role(:admin, @current_user)
+    @facilities = Facility.with_role(:admin, @user)
     # @facilities = Facility.all
   end
 
@@ -21,20 +21,20 @@ class FacilitiesController < ApplicationController
 
   # GET /facilities/1/edit
   def edit
+
   end
 
   # POST /facilities
   # POST /facilities.json
   def create
-    @current_user = current_user
     @facility = Facility.new(facility_params)
-    @facility.user_id = current_user.id
+    @facility.user_id = @user.id
     
     respond_to do |format|
       if @facility.save
         format.html { redirect_to @facility, notice: 'Facility was successfully created.' }
         format.json { render :show, status: :created, location: @facility }
-        @current_user.add_role :admin, Facility.where(user_id: @current_user.id).last
+        @user.add_role :admin, Facility.where(user_id: @user.id).last
       else
         format.html { render :new }
         format.json { render json: @facility.errors, status: :unprocessable_entity }
@@ -61,7 +61,7 @@ class FacilitiesController < ApplicationController
   def destroy
     @facility.destroy
     respond_to do |format|
-      format.html { redirect_to facilities_url, notice: 'Facility was successfully destroyed.' }
+      format.html { redirect_to facilities_path, notice: 'Facility was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,9 +71,12 @@ class FacilitiesController < ApplicationController
     def set_facility
       @facility = Facility.find(params[:id])
     end
-
+    # Sets user variable to the current loggedin user.
+    def set_user
+      @user = current_user
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def facility_params
-      params.require(:facility).permit(:address)
+      params.require(:facility).permit(:id, :name, :address, :address2, :city, :state, :zip_code, :phone, :description)
     end
 end

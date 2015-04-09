@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include Authority::UserAbilities
-  has_and_belongs_to_many :facilities
+  has_and_belongs_to_many :facilities, :join_table => "facilities_users", :class_name => "Facility" 
   has_and_belongs_to_many :events, through: :facilities 
   rolify
   # Include default devise modules. Others available are:
