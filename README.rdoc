@@ -19,11 +19,11 @@ Class Samurai is aim to make running a gym, cheer facility, dojo, or any other c
 
 == To-Do
 
-* Assign User admin role when creating Facility
-* Give admin role rights to invite staff and instrutor roles
-* Assign guardian role to have many students
-* Assign Students to have many guardians
-* Events belong to Facility
-* Facility belongs to Admin
-* Staff and Instructors belong to Facility
-
+* Add Users to sidebar
+* Add search users function
+* Add assign user a role function for admin
+* Add to f.views facilities that user is staff, instructor, guardian or a student at and user accepts role.
+* Account personal information
+* Profile public information
+* Add Mail system
+*
