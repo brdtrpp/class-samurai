@@ -4,7 +4,6 @@ class Facility < ActiveRecord::Base
   validates :name, presence: true
   validates :zip_code, length: { minimum: 5, maximum: 5 }
   validates :phone, length: { minimum: 10 }
-  has_and_belongs_to_many :users, :join_table => "facilities_users", :class_name => "Facility"
-  
-  belongs_to :facilities
+  has_and_belongs_to_many :users
+
 end

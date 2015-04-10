@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409164336) do
+ActiveRecord::Schema.define(version: 20150410160905) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.decimal  "zip_code"
+    t.decimal  "phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "addresses", ["address1", "state", "zip_code"], name: "index_addresses_on_address1_and_state_and_zip_code"
+
+  create_table "addresses_facilities", id: false, force: :cascade do |t|
+    t.integer "facility_id", null: false
+    t.integer "address_id",  null: false
+  end
+
+  add_index "addresses_facilities", ["address_id"], name: "index_addresses_facilities_on_address_id"
+  add_index "addresses_facilities", ["facility_id"], name: "index_addresses_facilities_on_facility_id"
+
+  create_table "addresses_user_profiles", id: false, force: :cascade do |t|
+    t.integer "user_profile_id", null: false
+    t.integer "address_id",      null: false
+  end
+
+  add_index "addresses_user_profiles", ["address_id"], name: "index_addresses_user_profiles_on_address_id"
+  add_index "addresses_user_profiles", ["user_profile_id"], name: "index_addresses_user_profiles_on_user_profile_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -23,24 +52,15 @@ ActiveRecord::Schema.define(version: 20150409164336) do
   end
 
   create_table "facilities", force: :cascade do |t|
-    t.string   "address"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "user_id"
     t.string   "name",        limit: 45
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.decimal  "zip_code",               precision: 5
-    t.string   "phone"
     t.text     "description"
   end
 
-  add_index "facilities", ["city"], name: "index_facilities_on_city"
   add_index "facilities", ["name"], name: "index_facilities_on_name"
-  add_index "facilities", ["state"], name: "index_facilities_on_state"
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at"
-  add_index "facilities", ["zip_code"], name: "index_facilities_on_zip_code"
 
   create_table "facilities_users", id: false, force: :cascade do |t|
     t.integer  "user_id"
@@ -59,6 +79,17 @@ ActiveRecord::Schema.define(version: 20150409164336) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "user_profiles", force: :cascade do |t|
+    t.string   "first_name", limit: 50
+    t.string   "last_name",  limit: 50
+    t.date     "dob"
+    t.string   "gender"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_profiles", ["first_name", "last_name"], name: "index_user_profiles_on_first_name_and_last_name"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

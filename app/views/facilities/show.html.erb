@@ -7,17 +7,7 @@
           <h3 class="panel-title"><%= @facility.name %></h3>
         </div>
         <div class="panel-body">
-          <address>
-          
-            <%= @facility.address %></br>
-            <%= @facility.address2 %></br>
-            <%= @facility.city %></br>
-            <%= @facility.state %></br>
-            <%= @facility.zip_code %></br>
-            <%= @facility.phone %></br>
-          </address>
             <%= @facility.description %>
-
         </div>
          <div class="panel-footer">
           <%= link_to 'Edit', edit_facility_path(@facility) %>
