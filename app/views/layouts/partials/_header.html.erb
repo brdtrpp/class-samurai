@@ -23,20 +23,23 @@
             </button>
         </li>
     </ul>
+    <li>
     <ul class="nav navbar-nav navbar-right">
-        <li class="toggle-navigation toggle-right">
-            <button class="sidebar-toggle" id="toggle-right">
-                <i class="fa fa-indent"></i>
-            </button>
-        </li>
+        <span class="meta">
+            <span class="text">
+                <%= link_to "Sign-Out", destroy_user_session_path, :method => 'get', class: "dropdown-toggle" %>
+            </span>
+        </span>
     </ul>
+    </li>
     
-    <%= link_to "Sign-Out", destroy_user_session_path, :method => 'get', class: "btn navbar-btn navbar-right" %>            
+        
+           
     
 <% else %>
 
-    <%= link_to "Login", new_user_session_path, class: "btn navbar-btn navbar-right hidden-xs"  %>
+    <%= link_to "Login", new_user_session_path, class: "btn navbar-btn navbar-right"  %>
     
-    <%= link_to "Sign-Up", new_user_registration_path, class: "btn navbar-btn navbar-right hidden-xs"  %>
+    <%= link_to "Sign-Up", new_user_registration_path, class: "btn navbar-btn navbar-right hidden-sm"  %>
     
 <% end %>

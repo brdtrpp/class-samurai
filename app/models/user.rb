@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   include Authority::UserAbilities
   has_many :facility
   has_one :address
-  belongs_to :facility
   accepts_nested_attributes_for :address
+  belongs_to :facility
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
