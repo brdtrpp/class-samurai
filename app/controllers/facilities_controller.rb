@@ -17,6 +17,7 @@ class FacilitiesController < ApplicationController
   # GET /facilities/new
   def new
     @facility = Facility.new
+    @facility.build_address
   end
 
   # GET /facilities/1/edit
@@ -77,6 +78,6 @@ class FacilitiesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def facility_params
-      params.require(:facility).permit(:id, :name, :address, :address2, :city, :state, :zip_code, :phone, :description)
+      params.require(:facility).permit(:id, :name, :description, address_attributes: [:address1, :address2, :city, :state, :zip_code, :phone])
     end
 end

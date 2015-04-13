@@ -13,6 +13,14 @@
 
   <div class="form-group">
     <%= f.text_field :name, class: "form-control", placeholder: "Facility Name" %></br>
+    <%= f.fields_for :address do |a| %>
+      <%= a.text_field :address1, class: "form-control", placeholder: "Address 1" %></br>
+      <%= a.text_field :address2, class: "form-control", placeholder: "Address 2" %></br>
+      <%= a.text_field :city, class: "form-control", placeholder: "City" %></br>
+      <%= a.text_field :state, class: "form-control", placeholder: "State" %></br>
+      <%= a.text_field :zip_code, class: "form-control", placeholder: "Zip Code" %></br>
+      <%= a.text_field :phone, class: "form-control", placeholder: "Phone Number" %></br>
+    <% end %>
     <%= f.text_area :description, class: "form-control", placeholder: "Description" %></br>
   </div>
   <%= f.submit "Save", class: "form-control btn btn-primary" %>

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :facility
   has_one :address
   belongs_to :facility
+  accepts_nested_attributes_for :address
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
