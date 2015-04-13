@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include Authority::UserAbilities
-  has_many :facility
+  has_many :facilit
   has_one :address
   accepts_nested_attributes_for :address
   belongs_to :facility
