@@ -11,36 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410160905) do
+ActiveRecord::Schema.define(version: 20150413124512) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
     t.string   "state"
-    t.decimal  "zip_code"
-    t.decimal  "phone_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "zip_code"
+    t.string   "phone"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.integer  "facility_id"
   end
 
-  add_index "addresses", ["address1", "state", "zip_code"], name: "index_addresses_on_address1_and_state_and_zip_code"
-
-  create_table "addresses_facilities", id: false, force: :cascade do |t|
-    t.integer "facility_id", null: false
-    t.integer "address_id",  null: false
-  end
-
-  add_index "addresses_facilities", ["address_id"], name: "index_addresses_facilities_on_address_id"
-  add_index "addresses_facilities", ["facility_id"], name: "index_addresses_facilities_on_facility_id"
-
-  create_table "addresses_user_profiles", id: false, force: :cascade do |t|
-    t.integer "user_profile_id", null: false
-    t.integer "address_id",      null: false
-  end
-
-  add_index "addresses_user_profiles", ["address_id"], name: "index_addresses_user_profiles_on_address_id"
-  add_index "addresses_user_profiles", ["user_profile_id"], name: "index_addresses_user_profiles_on_user_profile_id"
+  add_index "addresses", ["facility_id"], name: "index_addresses_on_facility_id"
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -61,13 +48,6 @@ ActiveRecord::Schema.define(version: 20150410160905) do
 
   add_index "facilities", ["name"], name: "index_facilities_on_name"
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at"
-
-  create_table "facilities_users", id: false, force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "facility_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
