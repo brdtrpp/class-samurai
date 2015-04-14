@@ -1,8 +1,17 @@
 class AddingAddressBelongs < ActiveRecord::Migration
   def change
-    add_reference :addresses, :user, index: true
-    add_foreign_key :addresses, :user
-    add_reference :addresses, :facility, index: true
-    add_foreign_key :addresses, :facility
+    
+    create_join_table :users, :addresses do |t|
+      t.index [:address_id, :user_id]
+    end
+    
+    create_join_table :facilities, :addresses do |t|
+      t.index [:address_id, :facility_id]
+    end
+    
+    add_reference :addresses, :users, index: true
+
+    add_reference :addresses, :facilities, index: true
+
   end
 end

@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150413124512) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
     t.string   "address2"
@@ -20,14 +23,28 @@ ActiveRecord::Schema.define(version: 20150413124512) do
     t.string   "state"
     t.integer  "zip_code"
     t.string   "phone"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_id"
-    t.integer  "facility_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "users_id"
+    t.integer  "facilities_id"
   end
 
-  add_index "addresses", ["facility_id"], name: "index_addresses_on_facility_id"
-  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
+  add_index "addresses", ["facilities_id"], name: "index_addresses_on_facilities_id", using: :btree
+  add_index "addresses", ["users_id"], name: "index_addresses_on_users_id", using: :btree
+
+  create_table "addresses_facilities", id: false, force: :cascade do |t|
+    t.integer "facility_id", null: false
+    t.integer "address_id",  null: false
+  end
+
+  add_index "addresses_facilities", ["address_id", "facility_id"], name: "index_addresses_facilities_on_address_id_and_facility_id", using: :btree
+
+  create_table "addresses_users", id: false, force: :cascade do |t|
+    t.integer "user_id",    null: false
+    t.integer "address_id", null: false
+  end
+
+  add_index "addresses_users", ["address_id", "user_id"], name: "index_addresses_users_on_address_id_and_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -39,15 +56,13 @@ ActiveRecord::Schema.define(version: 20150413124512) do
   end
 
   create_table "facilities", force: :cascade do |t|
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.string   "name",        limit: 45
-    t.text     "description"
   end
 
-  add_index "facilities", ["name"], name: "index_facilities_on_name"
-  add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at"
+  add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -57,19 +72,8 @@ ActiveRecord::Schema.define(version: 20150413124512) do
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-  add_index "roles", ["name"], name: "index_roles_on_name"
-
-  create_table "user_profiles", force: :cascade do |t|
-    t.string   "first_name", limit: 50
-    t.string   "last_name",  limit: 50
-    t.date     "dob"
-    t.string   "gender"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_profiles", ["first_name", "last_name"], name: "index_user_profiles_on_first_name_and_last_name"
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -87,14 +91,14 @@ ActiveRecord::Schema.define(version: 20150413124512) do
     t.string   "name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
   end
 
-  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
 end
