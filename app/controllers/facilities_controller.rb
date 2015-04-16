@@ -30,6 +30,7 @@ class FacilitiesController < ApplicationController
   def create
     @facility = Facility.new(facility_params)
     @facility.user_id = @user.id
+
     
     respond_to do |format|
       if @facility.save
@@ -78,6 +79,6 @@ class FacilitiesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def facility_params
-      params.require(:facility).permit(:id, :name, :description, address_attributes: [:address1, :address2, :city, :state, :zip_code, :phone])
+      params.require(:facility).permit(:id, :name, :description, address_attributes: [:id, :address1, :address2, :city, :state, :zip_code, :phone])
     end
 end
