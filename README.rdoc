@@ -19,11 +19,13 @@ Class Samurai is aim to make running a gym, cheer facility, dojo, or any other c
 
 == To-Do
 
-* Add Users to sidebar
+* Add Titles to each page
+* Create profile page with modal edits
+* Create people at this facility view
 * Add search users function
+* Add view all users to search users
 * Add assign user a role function for admin
 * Add to f.views facilities that user is staff, instructor, guardian or a student at and user accepts role.
 * Account personal information
 * Profile public information
 * Add Mail system
-*

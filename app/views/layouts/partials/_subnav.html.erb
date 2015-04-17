@@ -1,0 +1,15 @@
+<div class='tab-wrapper tab-primary'>
+  <div class='nav'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <ul class="nav nav-tabs">
+          <li class="<%= 'active' if controller?('address') && action?('show') %>">
+              <%= link_to "Address", address_path %>
+          </li>
+          <li role="presentation"><a href="#">Profile</a></li>
+          <li role="presentation"><a href="#">Messages</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

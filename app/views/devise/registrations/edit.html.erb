@@ -1,3 +1,6 @@
+<%= render 'layouts/partials/subnav' %>
+
+
 <section id="main-content">
   <div class="row-fluid">
     <div class="col-md-4">
@@ -31,7 +34,7 @@
           <h3 class="panel-title"><%= resource_name.to_s.humanize %> Basic Information </h3>
         </div>
         <div class="panel-body">
-          <%= render 'layouts/partials/address' %>
+          <%= render 'address/partials/form' %>
         </div>
       </div>
     </div>
