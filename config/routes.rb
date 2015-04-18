@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'account'       =>      'pages#account'
   get 'contact'       =>      'pages#contact'
   get 'landing'       =>      'pages#landing'
+  get 'user/profile'  =>      'user#show'
   get 'dashboard/index'
 
   # defaults to dashboard
