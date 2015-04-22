@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { sessions: "users/sessions" }
 
   resources :facilities
-
-  root 'pages#landing'
-  get 'home' => 'dashboard#index', as: :user_root 
-
   resources :events
 
-  devise_for :users
+  root 'pages#landing'
+  get 'home'          =>      'dashboard#index', as: :user_root
   get 'schedule'      =>      'pages#schedule'
   get 'payment'       =>      'pages#payment'
   get 'attendance'    =>      'pages#attendance'
@@ -16,18 +14,8 @@ Rails.application.routes.draw do
   get 'forms'         =>      'pages#forms'
   get 'account'       =>      'pages#account'
   get 'contact'       =>      'pages#contact'
-  get 'landing'       =>      'pages#landing'
-  get 'user/profile'  =>      'user#show'
-  get 'dashboard/index'
+  get 'dashboard'     =>      'dashboard#index'
 
-  # defaults to dashboard
-
-  
-  # view routes
-  get '/dashboard' => 'dashboard#index'
-  get 'pages/blank_page'
-  get 'pages/blank_page2'
-  
 
 
 end
