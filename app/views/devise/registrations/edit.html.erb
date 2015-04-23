@@ -1,12 +1,35 @@
 <section id="main-content">
   <div class="row-fluid">
-    <div class="col-md-4">
+    <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-primary">    
         <div class="panel-heading">
-          <h3 class="panel-title"><%= resource_name.to_s.humanize %> Login Information</h3>
+          <h3 class="panel-title"><%= @user.email %>'s Profile </h3>
         </div>
         <div class="panel-body">
-          <%= @user.email %>
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Picture</h2>
+            </div>
+            <div class='col-md-4'>
+              <h2>Address</h2>
+              <%= @user.address.address1 %></br>
+              <%= @user.address.address2 %></br>
+              <%= @user.address.city %></br>
+              <%= @user.address.state %></br>
+              <%= @user.address.zip_code %></br>
+              <%= render 'address/editmodal' %>
+            </div>
+            <div class="col-md-4">
+              <h2>Basic Informaiton</h2>
+              <p><%= @user.first_name %> <%= @user.last_name %></br></p>
+              <%= @user.email %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <h2>Biography</h2>
+            </div>
+          </div>
         </div>
         <div class="panel-footer">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myLogin">
@@ -16,18 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="panel panel-primary">    
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= resource_name.to_s.humanize %> Basic Information </h3>
-        </div>
-        <div class="panel-body">
-          <%= render 'address/partials/form' %>
-        </div>
-      </div>
-    </div>
-    
-    </div>
+   </div>
   </div>
   <div class='row'>
     <div class='col-md-4 col-md-offset-4'>
@@ -37,10 +49,7 @@
   </div>
 </section>
 
-<!-- Button trigger modal -->
-
-
-<!-- Modal -->
+<!-- Modal for Basic Information -->
 <div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
