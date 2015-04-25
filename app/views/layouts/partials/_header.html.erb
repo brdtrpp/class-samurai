@@ -1,5 +1,9 @@
 <header id="header">
-    <div class="container-fluid">
+    <% if user_signed_in? %>
+        <div class="container-fluid">
+    <% else %>
+        <div class="container">
+    <% end %>
         <!--logo start-->
         <div class="brand">
         <%= link_to root_path, class: "logo" do %>
@@ -14,11 +18,6 @@
                     <i class="fa fa-bars"></i>
                 </button>
             </li>
-            <li class="toggle-profile hidden-xs">
-                <button type="button" class="btn btn-default" id="toggle-profile">
-                    <i class="icon-user"></i>
-                </button>
-            </li>
             <li class="hidden-xs">
                 <input type="text" class="search" placeholder="Search Samurai...">
                 <button type="submit" class="btn btn-sm btn-search"><i class="fa fa-search"></i>
@@ -29,12 +28,16 @@
         <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Sign-Out", destroy_user_session_path, :method => 'get' %></li>
         </ul>
-    
-    
     <% else %>
         <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Login", new_user_session_path %></li>
-        <li><%= link_to "Sign-Up", new_user_registration_path, class: "hidden-sm" %>    </li>
+            <li>
+                <%= link_to new_user_session_path do %>
+                    <button type="button" class="btn btn-success btn-trans">
+                        Login
+                    </button>
+                <% end %>    
+            </li>
+            <li><%= link_to "Sign-Up", new_user_registration_path, class: "hidden-sm" %>    </li>
         </ul>
     <% end %>
 

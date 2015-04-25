@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
+before_filter :configure_sign_up_params, only: [:create]
 before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -10,14 +10,18 @@ before_filter :configure_account_update_params, only: [:update]
   # POST /resource
   # def create
   #   super
+  #   @user.build_address
+    
   # end
 
-  # GET /resource/edit
+  # # GET /resource/edit
   def edit
-      @user.build_address
+    
+    @user.build_address
+    super
   end
 
-  # PUT /resource
+  # # PUT /resource
   # def update
   #   super
   # end
@@ -37,16 +41,17 @@ before_filter :configure_account_update_params, only: [:update]
   # end
 
   protected
-
   # You can put the params you want to permit in the empty array.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.for(:sign_up) { |a|
+    a.permit(:id, :email, :password, :password_confirmation, address_attributes:[:address1, :address2, :city, :state, :zip_code])
+    }
+  end
 
   # You can put the params you want to permit in the empty array.
   def configure_account_update_params
     devise_parameter_sanitizer.for(:account_update) { |u|
-      u.permit(:email, :password, :password_confirmation, address_attributes:[:address1, :address2, :city, :state, :zip_code, :phone])
+      u.permit(:id, :email, :password, :password_confirmation, address_attributes:[:address1, :address2, :city, :state, :zip_code, :phone])
     }
   end
 

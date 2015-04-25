@@ -20,7 +20,8 @@ Class Samurai is aim to make running a gym, cheer facility, dojo, or any other c
 == To-Do
 
 * Add Titles to each page
-* Create profile page with modal edits
+* Fix actioncontroller errors on user
+* Fix update errors on facility
 * Create people at this facility view
 * Add search users function
 * Add view all users to search users
